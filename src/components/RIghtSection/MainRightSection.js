@@ -12,7 +12,12 @@ class MainRightSection extends Component {
 
                 <DataField/>
 
-
+                <DataField/>
+                <DataField/>
+                <DataField/>
+                <DataField/>
+                <DataField/>
+                
             </section>
         );
     }

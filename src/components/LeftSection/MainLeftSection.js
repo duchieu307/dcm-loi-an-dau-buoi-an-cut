@@ -4,6 +4,12 @@ import Follow from "./LeftSectionComponents/Follow"
 import Input from "../InputField"
 
 const Img = (props) => <img className="circle-image avatar" src="https://via.placeholder.com/500x500" alt="Anh Dai Dien"></img>
+const LeftDataVariables = {
+    name : "Name",
+    Info : "Description",
+    Follow : "Follow"
+}
+
 
 class MainLeftSection extends Component {
     
@@ -40,8 +46,9 @@ class MainLeftSection extends Component {
 
 
     render() {
-     
-        console.log("props: ",typeof(this.props.data)," ",this.props.data.leftSection)
+        // if (this.props.data.leftSection){
+        //     console.log(this.props.data.leftSection[0].value)
+        // }
         return (
             <section id="left"  >
                 {!this.state.isButtonClicked ?
@@ -49,15 +56,15 @@ class MainLeftSection extends Component {
                         onMouseEnter={this.handleMouseHover}
                         onMouseLeave={this.handleMouseHover}
                     >
-                        {/* <p>{this.props}</p> */}
+                        {this.props.data.leftSection ? <p>{this.props.data.leftSection[0].value}</p> : "Data chua ve" }
                         {this.state.isHovering && <button onClick={this.handleButtonClicked} >Bam di </button>}
                     </div>
                     :
-                    <Input changeName={this.props.changeName} handleButtonClicked={this.handleButtonClicked}/>
+                    <Input Name={this.props.LeftDataVariables.name} ChangeLeftContent={this.props.ChangeLeftContent} handleButtonClicked={this.handleButtonClicked}/>
                 }
                 <div className="center-left-section">
                     <Img  ></Img>
-                    <Info />
+                    <Info ChangeLeftContent={this.props.ChangeLeftContent} />
                     <Follow />
                 </div>
             </section>

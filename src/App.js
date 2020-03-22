@@ -8,39 +8,52 @@ class App extends Component {
   state = {
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const localData = sessionStorage
     console.log(localData.length)
     if (localData.length === 0) {
-      await this.setState(
+      this.setState(
         {
-          leftSection : [
-            {name: "Vu Hoang Duc Hieu"},
-            {description: "blah blah"}
+          leftSection: [
+            { name: "Name", value: "Vu Hoang Duc Hieu" },
+            { name: "Description", value: "Alo Alo 1234" }
           ],
-          rightSection :[
-            {data1 : "aaaaaaaa0"},
-            {data2: "bbbbbbbbbb0"},
-            {data3: "cccccccccccccc"}
+          rightSection: [
+            { data1: "aaaaaaaa0" },
+            { data2: "bbbbbbbbbb0" },
+            { data3: "cccccccccccccc" }
           ]
         }
       )
-      await console.log(this.state)
     } else {
 
     }
   }
 
-  changeName = text => this.setState({ name: text })
+  ChangeLeftContent = (name, value) => {
+    if (this.state.leftSection) {
+      let cloneData = this.state.leftSection.slice()
+      console.log(cloneData)
+      let leftDataLength = this.state.leftSection.length
+      for (let index = 0; index < leftDataLength; index++) {
+        if (cloneData[index].name === name) {
+          cloneData[index].value = value
+          this.setState({ leftSection: [...cloneData] })
+        }
+
+      }
+    }
+
+  }
 
   render() {
 
     const data = this.state
-    console.log("data: " ,data.leftSection)
-    return ( 
+    console.log("data: ", data.leftSection)
+    return (
       <div className="App">
         <main>
-          <LeftSection data={this.state} changeName={this.changeName} />
+          <LeftSection data={this.state} ChangeLeftContent={this.ChangeLeftContent} />
           <RightSection />
         </main>
       </div>
